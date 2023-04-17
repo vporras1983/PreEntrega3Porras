@@ -93,7 +93,8 @@ function cargarProductos() {
 		},
 		{
 			id: "0000013",
-			nombre: "Batería para cámara",
+			image: "../images/products/0000013.png",
+			nombre: "Cargador y batería para cámara",
 			cantidad: 5,
 			ubicacion: "BA12",
 			precio: 79.99,
@@ -107,6 +108,7 @@ function cargarProductos() {
 		},
 		{
 			id: "0000015",
+			image: "../images/products/0000015.png",
 			nombre: "Silla de director",
 			cantidad: 10,
 			ubicacion: "KF23",
@@ -121,6 +123,7 @@ function cargarProductos() {
 		},
 		{
 			id: "0000017",
+			image: "../images/products/0000017.png",
 			nombre: "Lámpara de set",
 			cantidad: 20,
 			ubicacion: "DR92",

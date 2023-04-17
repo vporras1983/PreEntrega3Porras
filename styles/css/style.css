@@ -54,7 +54,7 @@ h6 {
   transition: background-color 0.3s;
 }
 .btn:hover {
-  background-color: rgb(210, 210, 177);
+  background-color: rgb(200, 200, 167);
   color: rgb(95, 95, 43);
 }
 .card-reporte .btn {
@@ -93,7 +93,7 @@ nav ul li a[href="#"] {
   padding: 10px 20px;
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
-  background-image: radial-gradient(ellipse at center, rgb(210, 210, 177), rgb(255, 255, 255));
+  background-image: radial-gradient(ellipse at center, rgb(230, 230, 197), rgb(255, 255, 255));
   background-clip: padding-box;
   color: rgb(50, 50, 50);
 }
@@ -145,7 +145,7 @@ table tr td {
   padding: 0.2rem;
 }
 table thead {
-  color: rgb(210, 210, 177);
+  color: rgb(200, 200, 167);
   background-color: rgb(95, 95, 43);
   border-color: rgb(95, 95, 43);
 }
