@@ -11,8 +11,9 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" href="../styles/css/style.css" />
+		<script src="../data/scriptCarga.js"></script>
 	</head>
-	<body>
+	<body onload="cargarProductos()">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand" href="../index.html"><img src="../images/cart_icon.png" alt="Rental Site Logo" /></a>
 			<button
@@ -32,7 +33,7 @@
 						<a class="nav-link" href="#">Productos</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="./clientes.html">Productos</a>
+						<a class="nav-link" href="./clientes.html">Clientes</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="./ordenes.html">Órdenes</a>
@@ -54,15 +55,14 @@
 					</div>
 				</div>
 				<div>
-					<table id="tablaProductos" class="table table-sm table-striped tablaProductos">
+					<table id="tablaProductos" class="table table-striped tablaProductos">
 						<thead>
 							<tr>
-								<th class="text-center">Rut</th>
-								<th class="text-center">Razón social</th>
-								<th class="text-center">Contacto</th>
-								<th class="text-center">Teléfono</th>
-								<th class="text-center">Email</th>
-								<th class="text-center">Dirección</th>
+								<th class="text-center">RfID</th>
+								<th class="text-center">Nombre</th>
+								<th class="text-center">Stock</th>
+								<th class="text-center">Ubicación</th>
+								<th class="text-center">Precio</th>
 							</tr>
 						</thead>
 						<tbody id="tablaProductosBody"></tbody>
