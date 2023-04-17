@@ -482,11 +482,11 @@ function cargarClientes() {
 				card.className = "card card-reporte col-sm-12 col-md-5 col-lg-3";
 				card.innerHTML = `<h2 class="razon-social">${cliente.razonSocial}</h2>
 							<div class="datos">
-								<p><strong>RUT:</strong>${cliente.rut}</p>
-								<p><strong>Contacto:</strong>${cliente.nombreContacto}</p>
-								<p><strong>Teléfono:</strong>${cliente.telefono}</p>
-								<p><strong>Email:</strong>${cliente.email}</p>
-								<p><strong>Dirección:</strong>${cliente.direccion}</p>
+								<p><strong>RUT: </strong>${cliente.rut}</p>
+								<p><strong>Contacto: </strong>${cliente.nombreContacto}</p>
+								<p><strong>Teléfono: </strong>${cliente.telefono}</p>
+								<p><strong>Email: </strong>${cliente.email}</p>
+								<p><strong>Dirección: </strong>${cliente.direccion}</p>
 							</div> `;
 				listaClientes.appendChild(card);
 			}
