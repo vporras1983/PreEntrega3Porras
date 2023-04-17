@@ -63,6 +63,7 @@ h6
 		margin-top: 5%
 
 /* NAVIGATION */
+
 nav
 	background-color: lightgray
 	padding: 10px 30px
@@ -70,9 +71,11 @@ nav
 	ul
 		list-style: none
 		display: inline-block
+		align-items: center
 		li
 			display: inline-block
 			a
+				display: inline-block
 				color: $colorBlack
 				text-decoration: none
 				font-size: 1.75rem
@@ -80,10 +83,21 @@ nav
 				font-weight: bold
 				color: $colorGrey3
 				transition: color 0.3s
+
+			/* acá bajo tengo el selector para que encuentre la página que está seleccionada en la web */
+			a[href="#"]
+				font-weight: bold
+				padding: 10px 20px
+				border-radius: 20px
+				background-color: $colorWhite
+				background-image: radial-gradient(ellipse at center, $colorSecondary, $colorWhite)
+				background-clip: padding-box
+				color: $colorGrey3
 	img
 		max-width: 1.8rem
 
 /* LAYOUT */
+
 .main-div
 	display: flex
 	flex-wrap: wrap
@@ -107,7 +121,6 @@ nav
 		padding: 5px
 
 /* TABLE */
-table,
 th,
 td
 	border: 1px solid
@@ -170,8 +183,23 @@ table
 		margin-left: 50%
 		margin-right: 50%
 
+@media (min-width: 600px)
+	.tablaClientes
+		display: inline
+	.listaClientes
+		display: none
+
+@media (max-width: 600px)
+	.tablaClientes
+		display: none
+	.listaClientes
+		display: block
+
 @media (max-width: 400px)
 	table
 		width: 95%
 		margin: 1rem 0.5rem 0.1rem 0.5rem
 		border-collapse: collapse
+
+	.card-reporte
+		margin: 5%
