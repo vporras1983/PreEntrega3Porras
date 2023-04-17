@@ -194,6 +194,16 @@ table thead {
   margin: 5%;
 }
 
+.product-link {
+  color: rgb(95, 95, 43);
+}
+
+.product-link:hover {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-weight: 501;
+}
+
 @media (max-width: 700px) {
   .card {
     margin-left: 50%;
@@ -201,10 +211,12 @@ table thead {
   }
 }
 @media (min-width: 600px) {
+  .tablaOrdenes,
   .tablaClientes,
   .tablaProductos {
     display: inline;
   }
+  .listaOrdenes,
   .listaClientes,
   .listaProductos {
     display: none;
@@ -214,10 +226,12 @@ table thead {
   }
 }
 @media (max-width: 600px) {
+  .tablaOrdenes,
   .tablaClientes,
   .tablaProductos {
     display: none;
   }
+  .listaOrdenes,
   .listaClientes,
   .listaProductos {
     display: block;

@@ -1,3 +1,171 @@
+const clientes = [
+	{
+		rut: "215455669821",
+		razonSocial: "Empresa de Telecomunicaciones del Uruguay",
+		nombreContacto: "Juan Pérez",
+		telefono: "+598 99 123 456",
+		email: "juan.perez@antel.com.uy",
+		direccion: "Av. Italia 6201, Montevideo",
+	},
+	{
+		rut: "21876543211",
+		razonSocial: "Banco República",
+		nombreContacto: "María González",
+		telefono: "+598 97 654 321",
+		email: "maria.gonzalez@banrepcorp.com.uy",
+		direccion: "18 de Julio 1317, Montevideo",
+	},
+	{
+		rut: "21678901234",
+		razonSocial: "Petrobras Uruguay",
+		nombreContacto: "Pedro Hernández",
+		telefono: "+598 92 345 678",
+		email: "pedro.hernandez@petrobras.com.uy",
+		direccion: "Pocitos 11300, Montevideo",
+	},
+	{
+		rut: "21567890120",
+		razonSocial: "MVD Seguros",
+		nombreContacto: "Carolina Sánchez",
+		telefono: "+598 93 456 789",
+		email: "carolina.sanchez@mvdseguros.com.uy",
+		direccion: "Sarandí 620, Montevideo",
+	},
+	{
+		rut: "21501234568",
+		razonSocial: "La Pasiva",
+		nombreContacto: "Andrés Gómez",
+		telefono: "+598 94 567 890",
+		email: "andres.gomez@lapasiva.com.uy",
+		direccion: "18 de Julio 1291, Montevideo",
+	},
+	{
+		rut: "21890123456",
+		razonSocial: "Aeropuerto Internacional de Carrasco",
+		nombreContacto: "Sofía Castro",
+		telefono: "+598 95 678 901",
+		email: "sofia.castro@mvdairport.com.uy",
+		direccion: "Ruta Interbalnearia Km 19,500, Montevideo",
+	},
+	{
+		rut: "21456789012",
+		razonSocial: "Bodega Bouza",
+		nombreContacto: "Diego Rojas",
+		telefono: "+598 96 789 012",
+		email: "diego.rojas@bodegabouza.com.uy",
+		direccion: "Camino La Redención 7658, Montevideo",
+	},
+	{
+		rut: "21890230124",
+		razonSocial: "Televisión Nacional Uruguay",
+		nombreContacto: "Cristina Muñoz",
+		telefono: "+598 97 890 123",
+		email: "cristina.munoz@tveo.com.uy",
+		direccion: "Durazno 1351, Montevideo",
+	},
+	{
+		rut: "150496530014",
+		razonSocial: "Nautilus Developers",
+		nombreContacto: "Víctor Porras",
+		telefono: "+598 98 171 657",
+		email: "nautilus.uy@gmail.com",
+		direccion: "Treinta y Tres 1000 apto 209",
+	},
+	{
+		rut: "115226543200",
+		razonSocial: "Satanis S.A.",
+		nombreContacto: "Lucía Fernández",
+		telefono: "+56901234567",
+		email: "lucifer@satanis.com",
+		direccion: "Calle San Antonio 666, Canelones",
+	},
+];
+
+function cargarOrdenes() {
+	var ordenes = [];
+
+	const fechaActual = new Date();
+	const fechaMinima = new Date(fechaActual);
+	fechaMinima.setMonth(fechaActual.getMonth() + 1); // Sumamos 1 mes
+	const fechaMaxima = new Date(fechaActual);
+	fechaMaxima.setMonth(fechaActual.getMonth() + 3); // Sumamos 3 meses
+
+	const generarPedidoAleatorio = (index, fechaMinima, fechaMaxima) => {
+		const id = (++index).toString().padStart(7, "0");
+		const cliente = clientes[Math.floor(Math.random() * clientes.length)];
+		var devolucion = new Date(fechaMinima.getTime() + Math.random() * (fechaMaxima.getTime() - fechaMinima.getTime()));
+		var dia = devolucion.getDate().toString().padStart(2, "0");
+		var mes = (devolucion.getMonth() + 1).toString().padStart(2, "0");
+		var anio = devolucion.getFullYear().toString();
+		devolucion = `${dia}/${mes}/${anio}`;
+		var pickup = new Date(fechaActual.getTime() - Math.random() * 5184000000); // 60 días en milisegundos
+		dia = pickup.getDate().toString().padStart(2, "0");
+		mes = (pickup.getMonth() + 1).toString().padStart(2, "0");
+		anio = pickup.getFullYear().toString();
+		pickup = `${dia}/${mes}/${anio}`;
+		const linkProductos = "";
+		const monto = Math.floor(Math.random() * (12453 - 400 + 1) + 400);
+		const estado = ["Pendiente", "Señado", "Pago"][Math.floor(Math.random() * 3)];
+		return {
+			id,
+			rut: cliente.rut,
+			razonSocial: cliente.razonSocial,
+			pickup: pickup,
+			devolucion: devolucion,
+			linkProductos,
+			monto,
+			estado,
+		};
+	};
+
+	for (let i = 0; i < 30; i++) {
+		ordenes.push(generarPedidoAleatorio(i, fechaMinima, fechaMaxima));
+	}
+
+	const listaOrdenes = document.querySelector(".listaOrdenes .container .row");
+	const tablaOrdenes = document.querySelector("#tablaOrdenes tbody");
+	if (tablaOrdenes) {
+		ordenes.forEach((orden) => {
+			if (tablaOrdenes) {
+				const fila = document.createElement("tr");
+				fila.innerHTML = `
+        <td class="text-center">${orden.id}</td>
+        <td class="text-left">${orden.rut}</td>
+        <td class="text-left">${orden.razonSocial}</td>
+        <td class="text-center">${orden.pickup}</td>
+        <td class="text-center">${orden.devolucion}</td>
+        <td class="text-left"><a class="product-link" href="${
+					orden.linkProductos === "" ? "#" : orden.linkProductos
+				} target="_blank">Ver artículos</a></td>
+        <td class="text-right">${orden.monto}</td>
+        <td class="text-left">${orden.estado}</td>
+        `;
+				tablaOrdenes.appendChild(fila);
+			}
+			if (listaOrdenes) {
+				const card = document.createElement("div");
+				card.className = "card card-reporte col-sm-12 col-md-5 col-lg-3";
+				card.innerHTML = `
+        <h2 class="razon-social">${orden.id}</h2>
+							<div class="datos">
+								<p><strong>Rut: </strong>${orden.rut}</p>
+								<p><strong>Razón social: </strong>${orden.razonSocial}</p>
+								<p><strong>Entrega: </strong>${orden.pickup}</p>
+								<p><strong>Devolución: </strong> ${orden.devolucion}</p>
+								<p><strong>Monto: </strong>$ ${orden.monto}</p>
+								<p><strong>Estado: </strong> ${orden.estado}</p>
+								<a class="product-link" href="${
+									orden.linkProductos === "" ? "#" : orden.linkProductos
+								} target="_blank">Ver artículos</a>
+							</div> `;
+				listaOrdenes.appendChild(card);
+			}
+		});
+	} else {
+		console.error("Error al cargar la tabla: no se encontró el elemento tbody");
+	}
+}
+
 function cargarProductos() {
 	const productos = [
 		{
@@ -109,7 +277,7 @@ function cargarProductos() {
 		{
 			id: "0000015",
 			image: "../images/products/0000015.png",
-			nombre: "Silla de director",
+			nombre: "Silla de director alta",
 			cantidad: 10,
 			ubicacion: "KF23",
 			precio: 35.5,
@@ -160,7 +328,8 @@ function cargarProductos() {
 		},
 		{
 			id: "0000022",
-			nombre: "Silla de director",
+			image: "../images/products/0000022.png",
+			nombre: "Silla de director baja",
 			cantidad: 6,
 			ubicacion: "GF21",
 			precio: 250.0,
@@ -292,115 +461,32 @@ function cargarProductos() {
 }
 
 function cargarClientes() {
-	const productos = [
-		{
-			rut: "215455669821",
-			razonSocial: "Empresa de Telecomunicaciones del Uruguay",
-			nombreContacto: "Juan Pérez",
-			telefono: "+598 99 123 456",
-			email: "juan.perez@antel.com.uy",
-			direccion: "Av. Italia 6201, Montevideo",
-		},
-		{
-			rut: "21876543211",
-			razonSocial: "Banco República",
-			nombreContacto: "María González",
-			telefono: "+598 97 654 321",
-			email: "maria.gonzalez@banrepcorp.com.uy",
-			direccion: "18 de Julio 1317, Montevideo",
-		},
-		{
-			rut: "21678901234",
-			razonSocial: "Petrobras Uruguay",
-			nombreContacto: "Pedro Hernández",
-			telefono: "+598 92 345 678",
-			email: "pedro.hernandez@petrobras.com.uy",
-			direccion: "Pocitos 11300, Montevideo",
-		},
-		{
-			rut: "21567890120",
-			razonSocial: "MVD Seguros",
-			nombreContacto: "Carolina Sánchez",
-			telefono: "+598 93 456 789",
-			email: "carolina.sanchez@mvdseguros.com.uy",
-			direccion: "Sarandí 620, Montevideo",
-		},
-		{
-			rut: "21501234568",
-			razonSocial: "La Pasiva",
-			nombreContacto: "Andrés Gómez",
-			telefono: "+598 94 567 890",
-			email: "andres.gomez@lapasiva.com.uy",
-			direccion: "18 de Julio 1291, Montevideo",
-		},
-		{
-			rut: "21890123456",
-			razonSocial: "Aeropuerto Internacional de Carrasco",
-			nombreContacto: "Sofía Castro",
-			telefono: "+598 95 678 901",
-			email: "sofia.castro@mvdairport.com.uy",
-			direccion: "Ruta Interbalnearia Km 19,500, Montevideo",
-		},
-		{
-			rut: "21456789012",
-			razonSocial: "Bodega Bouza",
-			nombreContacto: "Diego Rojas",
-			telefono: "+598 96 789 012",
-			email: "diego.rojas@bodegabouza.com.uy",
-			direccion: "Camino La Redención 7658, Montevideo",
-		},
-		{
-			rut: "21890230124",
-			razonSocial: "Televisión Nacional Uruguay",
-			nombreContacto: "Cristina Muñoz",
-			telefono: "+598 97 890 123",
-			email: "cristina.munoz@tveo.com.uy",
-			direccion: "Durazno 1351, Montevideo",
-		},
-		{
-			rut: "150496530014",
-			razonSocial: "Nautilus Developers",
-			nombreContacto: "Víctor Porras",
-			telefono: "+598 98 171 657",
-			email: "nautilus.uy@gmail.com",
-			direccion: "Treinta y Tres 1000 apto 209",
-		},
-		{
-			rut: "115226543200",
-			razonSocial: "Satanis S.A.",
-			nombreContacto: "Lucía Fernández",
-			telefono: "+56901234567",
-			email: "lucifer@satanis.com",
-			direccion: "Calle San Antonio 666, Canelones",
-		},
-	];
-
 	const listaClientes = document.querySelector(".listaClientes .container .row");
 	const tablaClientes = document.querySelector("#tablaClientes tbody");
 	if (tablaClientes) {
-		productos.forEach((producto) => {
+		clientes.forEach((cliente) => {
 			if (tablaClientes) {
 				const fila = document.createElement("tr");
 				fila.innerHTML = `
-        <td>${producto.rut}</td>
-        <td class="text-left">${producto.razonSocial}</td>
-        <td class="text-left">${producto.nombreContacto}</td>
-        <td class="text-left">${producto.telefono}</td>
-        <td class="text-left">${producto.email}</td>
-        <td class="text-left">${producto.direccion}</td>
+        <td>${cliente.rut}</td>
+        <td class="text-left">${cliente.razonSocial}</td>
+        <td class="text-left">${cliente.nombreContacto}</td>
+        <td class="text-left">${cliente.telefono}</td>
+        <td class="text-left">${cliente.email}</td>
+        <td class="text-left">${cliente.direccion}</td>
         `;
 				tablaClientes.appendChild(fila);
 			}
 			if (listaClientes) {
 				const card = document.createElement("div");
 				card.className = "card card-reporte col-sm-12 col-md-5 col-lg-3";
-				card.innerHTML = `<h2 class="razon-social">${producto.razonSocial}</h2>
+				card.innerHTML = `<h2 class="razon-social">${cliente.razonSocial}</h2>
 							<div class="datos">
-								<p><strong>RUT:</strong>${producto.rut}</p>
-								<p><strong>Contacto:</strong>${producto.nombreContacto}</p>
-								<p><strong>Teléfono:</strong>${producto.telefono}</p>
-								<p><strong>Email:</strong>${producto.email}</p>
-								<p><strong>Dirección:</strong>${producto.direccion}</p>
+								<p><strong>RUT:</strong>${cliente.rut}</p>
+								<p><strong>Contacto:</strong>${cliente.nombreContacto}</p>
+								<p><strong>Teléfono:</strong>${cliente.telefono}</p>
+								<p><strong>Email:</strong>${cliente.email}</p>
+								<p><strong>Dirección:</strong>${cliente.direccion}</p>
 							</div> `;
 				listaClientes.appendChild(card);
 			}
@@ -410,7 +496,7 @@ function cargarClientes() {
 	}
 }
 
-function cargarData() {
+function cargarDashboard() {
 	const entregas = [
 		{
 			articulo: "Baño portátil",

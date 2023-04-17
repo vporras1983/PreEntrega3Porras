@@ -11,8 +11,9 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" href="../styles/css/style.css" />
+		<script src="../data/scriptCarga.js"></script>
 	</head>
-	<body>
+	<body onload="cargarOrdenes()">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand" href="../index.html"><img src="../images/cart_icon.png" alt="Rental Site Logo" /></a>
 			<button
@@ -43,8 +44,35 @@
 				</ul>
 			</div>
 		</nav>
-		<main>
+
+		<header>
 			<h1>Órdenes</h1>
+		</header>
+		<main>
+			<div class="text-center">
+				<div class="listaOrdenes">
+					<div class="container">
+						<div class="row"></div>
+					</div>
+				</div>
+				<div>
+					<table id="tablaOrdenes" class="table table-striped tablaOrdenes">
+						<thead>
+							<tr>
+								<th class="text-center">Id</th>
+								<th class="text-center">Rut</th>
+								<th class="text-center">Razón social</th>
+								<th class="text-center">Pickup</th>
+								<th class="text-center">Devolución</th>
+								<th class="text-center">Productos</th>
+								<th class="text-center">Monto</th>
+								<th class="text-center">Estado</th>
+							</tr>
+						</thead>
+						<tbody id="tablaOrdenesBody"></tbody>
+					</table>
+				</div>
+			</div>
 		</main>
 	</body>
 </html>
