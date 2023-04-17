@@ -1,7 +1,7 @@
-function cargarClientes() {
-	const clientes = [
+function cargarProductos() {
+	const productos = [
 		{
-			rut: "12.345.678-9",
+			rut: "021455669821",
 			razonSocial: "Empresa de Telecomunicaciones del Uruguay",
 			nombreContacto: "Juan Pérez",
 			telefono: "+56912345678",
@@ -65,20 +65,139 @@ function cargarClientes() {
 			direccion: "Durazno 1351, Montevideo",
 		},
 		{
-			rut: "12.345.678-0",
-			razonSocial: "Cliente 9 S.A.",
-			nombreContacto: "Francisco Torres",
-			telefono: "+56989012345",
-			email: "francisco.torres@cliente9.com",
-			direccion: "Av. Pedro de Valdivia 456, Montevideo",
+			rut: "150496530014",
+			razonSocial: "Nautilus Developers",
+			nombreContacto: "Víctor Porras",
+			telefono: "+598 98 171 657",
+			email: "nautilus.uy@gmail.com",
+			direccion: "Treinta y Tres 1000 apto 209",
 		},
 		{
-			rut: "98.765.432-0",
+			rut: "115226543200",
 			razonSocial: "Satanis S.A.",
 			nombreContacto: "Lucía Fernández",
 			telefono: "+56901234567",
 			email: "lucifer@satanis.com",
 			direccion: "Calle San Antonio 123, Canelones",
+		},
+	];
+
+	const listaProductos = document.querySelector(".listaProductos .container .row");
+	const tablaProductos = document.querySelector("#tablaProductos tbody");
+	if (tablaProductos) {
+		productos.forEach((cliente) => {
+			if (tablaProductos) {
+				const fila = document.createElement("tr");
+				fila.innerHTML = `
+        <td>${cliente.rut}</td>
+        <td class="text-left">${cliente.razonSocial}</td>
+        <td class="text-left">${cliente.nombreContacto}</td>
+        <td class="text-left">${cliente.telefono}</td>
+        <td class="text-left">${cliente.email}</td>
+        <td class="text-left">${cliente.direccion}</td>
+        `;
+				tablaProductos.appendChild(fila);
+			}
+			if (listaProductos) {
+				const card = document.createElement("div");
+				card.className = "card card-reporte col-sm-12 col-md-5 col-lg-3";
+				card.innerHTML = `<h2 class="razon-social">${cliente.razonSocial}</h2>
+							<div class="datos">
+								<p><strong>RUT:</strong>${cliente.rut}</p>
+								<p><strong>Contacto:</strong>${cliente.nombreContacto}</p>
+								<p><strong>Teléfono:</strong>${cliente.telefono}</p>
+								<p><strong>Email:</strong>${cliente.email}</p>
+								<p><strong>Dirección:</strong>${cliente.direccion}</p>
+							</div> `;
+				listaProductos.appendChild(card);
+			}
+		});
+	} else {
+		console.error("Error al cargar la tabla: no se encontró el elemento tbody");
+	}
+}
+
+function cargarClientes() {
+	const clientes = [
+		{
+			rut: "215455669821",
+			razonSocial: "Empresa de Telecomunicaciones del Uruguay",
+			nombreContacto: "Juan Pérez",
+			telefono: "+598 99 123 456",
+			email: "juan.perez@antel.com.uy",
+			direccion: "Av. Italia 6201, Montevideo",
+		},
+		{
+			rut: "21876543211",
+			razonSocial: "Banco República",
+			nombreContacto: "María González",
+			telefono: "+598 97 654 321",
+			email: "maria.gonzalez@banrepcorp.com.uy",
+			direccion: "18 de Julio 1317, Montevideo",
+		},
+		{
+			rut: "21678901234",
+			razonSocial: "Petrobras Uruguay",
+			nombreContacto: "Pedro Hernández",
+			telefono: "+598 92 345 678",
+			email: "pedro.hernandez@petrobras.com.uy",
+			direccion: "Pocitos 11300, Montevideo",
+		},
+		{
+			rut: "21567890120",
+			razonSocial: "MVD Seguros",
+			nombreContacto: "Carolina Sánchez",
+			telefono: "+598 93 456 789",
+			email: "carolina.sanchez@mvdseguros.com.uy",
+			direccion: "Sarandí 620, Montevideo",
+		},
+		{
+			rut: "21501234568",
+			razonSocial: "La Pasiva",
+			nombreContacto: "Andrés Gómez",
+			telefono: "+598 94 567 890",
+			email: "andres.gomez@lapasiva.com.uy",
+			direccion: "18 de Julio 1291, Montevideo",
+		},
+		{
+			rut: "21890123456",
+			razonSocial: "Aeropuerto Internacional de Carrasco",
+			nombreContacto: "Sofía Castro",
+			telefono: "+598 95 678 901",
+			email: "sofia.castro@mvdairport.com.uy",
+			direccion: "Ruta Interbalnearia Km 19,500, Montevideo",
+		},
+		{
+			rut: "21456789012",
+			razonSocial: "Bodega Bouza",
+			nombreContacto: "Diego Rojas",
+			telefono: "+598 96 789 012",
+			email: "diego.rojas@bodegabouza.com.uy",
+			direccion: "Camino La Redención 7658, Montevideo",
+		},
+		{
+			rut: "21890230124",
+			razonSocial: "Televisión Nacional Uruguay",
+			nombreContacto: "Cristina Muñoz",
+			telefono: "+598 97 890 123",
+			email: "cristina.munoz@tveo.com.uy",
+			direccion: "Durazno 1351, Montevideo",
+		},
+		{
+			rut: "150496530014",
+			razonSocial: "Nautilus Developers",
+			nombreContacto: "Víctor Porras",
+			telefono: "+598 98 171 657",
+			email: "nautilus.uy@gmail.com",
+			direccion: "Treinta y Tres 1000 apto 209",
+		},
+		{
+			rut: "115226543200",
+			razonSocial: "Satanis S.A.",
+			nombreContacto: "Lucía Fernández",
+			telefono: "+56901234567",
+			email: "lucifer@satanis.com",
+			direccion: "Calle San Antonio 666, Canelones",
 		},
 	];
 
