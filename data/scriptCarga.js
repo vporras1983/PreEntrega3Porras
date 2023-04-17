@@ -2,6 +2,7 @@ function cargarProductos() {
 	const productos = [
 		{
 			id: "0000001",
+			image: "../images/products/0000001.png",
 			nombre: "Silla plegable",
 			cantidad: 80,
 			ubicacion: "WA03",
@@ -9,6 +10,7 @@ function cargarProductos() {
 		},
 		{
 			id: "0000002",
+			image: "../images/products/0000002.png",
 			nombre: "Mesa portátil",
 			cantidad: 20,
 			ubicacion: "RE05",
@@ -16,6 +18,7 @@ function cargarProductos() {
 		},
 		{
 			id: "0000003",
+			image: "../images/products/0000003.png",
 			nombre: "Linterna LED",
 			cantidad: 15,
 			ubicacion: "LI02",
@@ -23,7 +26,8 @@ function cargarProductos() {
 		},
 		{
 			id: "0000004",
-			nombre: "Generador 5000W",
+			image: "../images/products/0000004.png",
+			nombre: "Generador 1500W",
 			cantidad: 1,
 			ubicacion: "PO10",
 			precio: 299.99,
@@ -51,6 +55,7 @@ function cargarProductos() {
 		},
 		{
 			id: "0000008",
+			image: "../images/products/0000008.png",
 			nombre: "Trípode de cámara",
 			cantidad: 5,
 			ubicacion: "TR06",
@@ -58,6 +63,7 @@ function cargarProductos() {
 		},
 		{
 			id: "0000009",
+			image: "../images/products/0000009.png",
 			nombre: "Mochila para cámara",
 			cantidad: 5,
 			ubicacion: "MO08",
@@ -65,6 +71,7 @@ function cargarProductos() {
 		},
 		{
 			id: "0000010",
+			image: "../images/products/0000010.png",
 			nombre: "Micrófono de solapa",
 			cantidad: 4,
 			ubicacion: "MI02",
@@ -121,7 +128,8 @@ function cargarProductos() {
 		},
 		{
 			id: "0000018",
-			nombre: "Generador eléctrico",
+			image: "../images/products/0000018.png",
+			nombre: "Generador eléctrico 6KW",
 			cantidad: 2,
 			ubicacion: "HG56",
 			precio: 1420.0,
@@ -247,7 +255,10 @@ function cargarProductos() {
 			if (tablaProductos) {
 				const fila = document.createElement("tr");
 				fila.innerHTML = `
-        <td>${producto.id}</td>
+        <td class="text-center mx-auto"><img class="productImage mx-auto" src=${
+					producto.image === undefined ? "../images/products/nodisponible.webp" : producto.image
+				} alt=${"Imagen " + producto.image === undefined ? "no disponible" : producto.nombre} /></td>
+        <td class="text-center">${producto.id}</td>
         <td class="text-left">${producto.nombre}</td>
         <td class="text-right">${producto.cantidad}</td>
         <td class="text-center">${producto.ubicacion}</td>
@@ -258,12 +269,16 @@ function cargarProductos() {
 			if (listaProductos) {
 				const card = document.createElement("div");
 				card.className = "card card-reporte col-sm-12 col-md-5 col-lg-3";
-				card.innerHTML = `<h2 class="razon-social">${producto.id}</h2>
+				card.innerHTML = `
+        <img class="productImage" src=${
+					producto.image === undefined ? "../images/products/nodisponible.webp" : producto.image
+				} alt=${"Imagen " + producto.image === undefined ? "no disponible" : producto.nombre} />
+        <h2 class="razon-social">${producto.id}</h2>
 							<div class="datos">
-								<p><strong>Nombre:</strong>${producto.nombre}</p>
-								<p><strong>Cantidad:</strong>${producto.cantidad}</p>
-								<p><strong>Ubicación:</strong>${producto.ubicacion}</p>
-								<p><strong>Precio:</strong>$ ${producto.precio}</p>
+								<p><strong>Nombre: </strong>${producto.nombre}</p>
+								<p><strong>Cantidad: </strong>${producto.cantidad}</p>
+								<p><strong>Ubicación: </strong>${producto.ubicacion}</p>
+								<p><strong>Precio: </strong>$ ${producto.precio}</p>
 							</div> `;
 				listaProductos.appendChild(card);
 			}

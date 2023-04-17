@@ -189,6 +189,11 @@ table thead {
   justify-content: center;
 }
 
+.productImage {
+  max-width: 300px;
+  margin: 5%;
+}
+
 @media (max-width: 700px) {
   .card {
     margin-left: 50%;
@@ -203,6 +208,9 @@ table thead {
   .listaClientes,
   .listaProductos {
     display: none;
+  }
+  .productImage {
+    max-width: 100px;
   }
 }
 @media (max-width: 600px) {
